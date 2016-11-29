@@ -1,0 +1,35 @@
+application: sshah-dataviz
+version: 1
+runtime: python27
+api_version: 1
+
+threadsafe: yes
+
+handlers:
+
+- url: .* # This regex directs all routes to main.app
+  script: main.app
+- url: /semantic
+  static_dir: semantic
+- url: /semantic/dist
+  static_dir: semantic/dist
+
+- url: /stylesheets
+  static_dir: stylesheets
+- url: /d3
+  static_dir: d3
+- url: /data
+  static_dir: data
+  application_readable: true
+- url: .*
+  script: main.app
+
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
+- name: numpy
+  version: latest
+- name: django
+  version: latest
